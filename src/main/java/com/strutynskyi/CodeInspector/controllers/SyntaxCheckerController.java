@@ -24,7 +24,7 @@ public class SyntaxCheckerController {
     }
 
     @PostMapping("/check")
-    public ResponseEntity<List<ErrorObject>> checkSyntax(@RequestParam("cppFile") MultipartFile cppFile) throws IOException {
+    public ResponseEntity<List<ErrorObject>> checkSyntax(@RequestParam(value = "cppFile") MultipartFile cppFile) throws IOException {
         List<ErrorObject> errors = syntaxCheckerService.check(cppFile);
         return ResponseEntity.ok(errors);
     }

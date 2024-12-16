@@ -25,6 +25,9 @@ public class SyntaxCheckerServiceImpl implements SyntaxCheckerService {
         if (!Objects.requireNonNull(cppFile.getOriginalFilename()).endsWith(".cpp"))
             throw new InvalidFileFormatException(Utils.getFileFormat(cppFile.getOriginalFilename()));
 
+        if (cppFile.isEmpty())
+            throw new IOException("File is empty");
+
         CharStream input = CharStreams.fromStream(cppFile.getInputStream());
         CPP14Lexer lexer = new CPP14Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
