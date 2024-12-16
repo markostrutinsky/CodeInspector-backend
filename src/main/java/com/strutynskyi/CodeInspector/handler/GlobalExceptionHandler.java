@@ -1,17 +1,20 @@
 package com.strutynskyi.CodeInspector.handler;
 
 
+import com.strutynskyi.CodeInspector.responces.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     private static final Map<Class<? extends Exception>, HttpStatus> exceptionStatusMap = Map.of(
-            IllegalArgumentException.class, HttpStatus.BAD_REQUEST
+            IllegalArgumentException.class, HttpStatus.BAD_REQUEST,
+            IOException.class, HttpStatus.BAD_REQUEST
     );
 
     @ExceptionHandler(Exception.class)

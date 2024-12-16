@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class SyntaxCheckerController {
     }
 
     @PostMapping("/check")
-    public ResponseEntity<List<ErrorObject>> checkSyntax(@RequestParam("cppFile") MultipartFile cppFile) {
+    public ResponseEntity<List<ErrorObject>> checkSyntax(@RequestParam("cppFile") MultipartFile cppFile) throws IOException {
         List<ErrorObject> errors = syntaxCheckerService.check(cppFile);
         return ResponseEntity.ok(errors);
     }
